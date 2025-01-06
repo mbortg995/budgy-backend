@@ -1,0 +1,30 @@
+import { model, Schema } from 'mongoose';
+
+
+const budgetsSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  year: {
+    type: Number,
+    required: true
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  initialBalance: {
+    type: Number,
+    required: true
+  },
+  expectedBudget: {
+    type: Number,
+    required: true
+  }
+});
+
+const budgetsModel = model('Budget', budgetsSchema);
+
+export default budgetsModel;
