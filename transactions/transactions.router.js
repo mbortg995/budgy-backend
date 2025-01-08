@@ -5,14 +5,11 @@ const router = Router();
 
 router.get('/', async (req, res) => {
   const { _id, budget_id, start_date, end_date, type } = req.query;
-  try {
-    if (_id || budget_id || start_date || end_date || type) {
-      await transactionsController.filterTransactions(req.query, res);
-    } else {
-      await transactionsController.getAllTransactions(req, res);
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+
+  if (_id || budget_id || start_date || end_date || type) {
+    await transactionsController.filterTransactions(req.query, res);
+  } else {
+    await transactionsController.getAllTransactions(req, res);
   }
 });
 router.post('/', transactionsController.createTransaction);
