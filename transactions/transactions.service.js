@@ -1,7 +1,8 @@
 import transactionsrepository from './transactions.repository.js';
 
+
 const validateTransactionsFields = (transactionData) => {
-  const requiredFields = ['description', 'amount', 'type', 'category', 'date', 'budget'];
+  const requiredFields = ['description', 'amount', 'type', 'cycle','title', 'budget_id', 'transactionDate'];
 
   for (const field of requiredFields) {
     if (!transactionData[field]) {
@@ -26,6 +27,9 @@ const transactionsService = {
   },
   createTransaction: async (transactionData) => {
     validateTransactionsFields(transactionData);
+    if (!transactionData.budget_id) {
+      throw new Error('Missing required field: budget_id');
+    }
     const transaction = await transactionsrepository.createTransaction(transactionData);
     return transaction;
   },
@@ -45,3 +49,5 @@ const transactionsService = {
     return transaction;
   }
 };
+
+export default transactionsService;

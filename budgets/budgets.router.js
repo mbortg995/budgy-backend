@@ -3,9 +3,9 @@ import { budgetsController } from "./budgets.controller.js";
 
 const router = Router();
 
-router.get("/budgets", budgetsController.getBudgets);
-router.post("/budgets", budgetsController.createBudget);
-router.put("/budgets/:id", budgetsController.updateBudget);
-router.delete("/budgets/:id", budgetsController.deleteBudget);
+router.get("/", budgetsController.getBudgets);
+router.post("/", budgetsController.createBudget);
+router.put("/:id", budgetsController.updateBudget);
+router.delete("/:id", budgetsController.deleteBudget);
 
 export default router;

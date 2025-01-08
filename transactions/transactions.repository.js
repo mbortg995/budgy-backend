@@ -11,7 +11,17 @@ const transactionsRepository = {
     return transaction;
   },
   filterTransactions: async (filters) => {
-    const transactions = await transactionsModel.find(filters).lean();
+    const { startDate, endDate, ...otherFilters } = filters;
+    let query = { ...otherFilters };
+
+    if (startDate) {
+      query.transactionDate = { $gte: new Date(startDate) };
+    }
+    if (endDate) {
+      query.transactionDate = query.transactionDate || {};
+      query.transactionDate.$lte = new Date(endDate);
+    }
+    const transactions = await transactionsModel.find(query).lean();
     return transactions;
   },
   createTransaction: async (transactionData) => {
@@ -29,3 +39,5 @@ const transactionsRepository = {
     return transaction;
   }
 };
+
+export default transactionsRepository;

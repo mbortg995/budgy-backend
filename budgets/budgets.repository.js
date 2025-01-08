@@ -14,7 +14,7 @@ const budgetsRepository = {
     const budget = await budgetsModel.findByIdAndUpdate(filter, budgetData, { new: true });
     return budget;
   },
-  deleteBudget: async (id) => {Ç
+  deleteBudget: async (id) => {
     const filter = { _id: id };
     const budget = await budgetsModel.findByIdAndDelete(filter);
     return budget;

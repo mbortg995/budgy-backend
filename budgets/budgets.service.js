@@ -1,7 +1,7 @@
 import budgetsrepository from './budgets.repository.js';
 
 const validateBudgetsFields = (budgetData) => {
-  const requiredFields = ['name', 'year', 'user', 'initialBalance', 'expectedBudget'];
+  const requiredFields = ['name', 'year', 'user', 'initialBalance'];
 
   for (const field of requiredFields) {
     if (!budgetData[field]) {

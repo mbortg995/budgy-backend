@@ -20,7 +20,7 @@ const budgetsSchema = new Schema({
   },
   expectedBudget: {
     type: Number,
-    required: true
+    required: false
   }
 });
 
